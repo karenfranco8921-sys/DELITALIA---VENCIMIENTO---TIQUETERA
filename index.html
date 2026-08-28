@@ -67,6 +67,11 @@
   #hub-catalog-modal .btn-primary{background:#B5482F;color:#fff;}
   #hub-catalog-modal .btn-ghost{background:#F0EEEC;color:#333;}
 
+  /* ===== Al imprimir: ocultar la barra de pestañas y el modal del hub ===== */
+  @media print{
+    #hub-tabbar, #hub-catalog-modal{display:none !important;}
+  }
+
   /* ===== Estilos propios de cada app (ya con selectores namespaced) ===== */
 #app-inventario{
     --coffee-900:#2E1A12;
@@ -296,7 +301,7 @@
   }
 #app-inventario .tag-search-results{max-height:110px;overflow-y:auto;font-size:10.5px;}
 #app-inventario .tag-search-results div{padding:5px 6px;border-top:1px solid var(--line);}
-@media print{#app-inventario body *{ visibility:hidden; }
+@media print{#app-inventario *{ visibility:hidden; }
 #app-inventario .tags-screen, #app-inventario .tags-screen *{ visibility:visible; }
 #app-inventario .tags-screen{ position:static; }
 #app-inventario .no-print{ display:none !important; }
@@ -599,7 +604,7 @@
     print-color-adjust:exact;
     color-adjust:exact;
   }
-@media print{#app-delitalia body *{visibility:hidden;}
+@media print{#app-delitalia *{visibility:hidden;}
 #app-delitalia #del-print-area, #app-delitalia #del-print-area *{visibility:visible; -webkit-print-color-adjust:exact; print-color-adjust:exact; color-adjust:exact;}
 #app-delitalia #del-print-area{display:block; position:absolute; top:0; left:0;}
 #app-delitalia .label-page{page-break-after:always;}
@@ -898,7 +903,7 @@
     print-color-adjust:exact;
     color-adjust:exact;
   }
-@media print{#app-cafeclub body *{visibility:hidden;}
+@media print{#app-cafeclub *{visibility:hidden;}
 #app-cafeclub #cc-print-area, #app-cafeclub #cc-print-area *{visibility:visible; -webkit-print-color-adjust:exact; print-color-adjust:exact; color-adjust:exact;}
 #app-cafeclub #cc-print-area{display:block; position:absolute; top:0; left:0;}
 #app-cafeclub .label-page{page-break-after:always;}
