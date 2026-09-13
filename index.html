@@ -1878,24 +1878,21 @@ const LOGO_DATA_URI = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALkAAAA4CAY
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
-  // ---------- persistencia opcional (por dispositivo) ----------
-  async function saveConsolidado(){
-    try{
-      if(window.storage){
-        await window.storage.set('consolidado-etiquetas', JSON.stringify(consolidado), false);
-      }
-    }catch(e){ /* almacenamiento no disponible, seguimos solo en memoria */ }
+  // ---------- persistencia local (localStorage del navegador) ----------
+  function saveConsolidado(){
+    try {
+      localStorage.setItem('del_consolidado_v1', JSON.stringify(consolidado));
+    } catch(e) { /* almacenamiento no disponible */ }
   }
-  async function loadConsolidado(){
-    try{
-      if(window.storage){
-        const r = await window.storage.get('consolidado-etiquetas', false);
-        if(r && r.value){
-          consolidado = JSON.parse(r.value);
-          renderConsolidado();
-        }
+  function loadConsolidado(){
+    try {
+      const raw = localStorage.getItem('del_consolidado_v1');
+      if(raw){
+        const parsed = JSON.parse(raw);
+        if(Array.isArray(parsed)) consolidado = parsed;
+        renderConsolidado();
       }
-    }catch(e){ /* no hay datos previos */ }
+    } catch(e) { /* no hay datos previos */ }
   }
   loadConsolidado();
 
@@ -2216,24 +2213,21 @@ const LOGO_DATA_URI = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALkAAAA4CAY
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
-  // ---------- persistencia opcional (por dispositivo) ----------
-  async function saveConsolidado(){
-    try{
-      if(window.storage){
-        await window.storage.set('consolidado-etiquetas', JSON.stringify(consolidado), false);
-      }
-    }catch(e){ /* almacenamiento no disponible, seguimos solo en memoria */ }
+  // ---------- persistencia local (localStorage del navegador) ----------
+  function saveConsolidado(){
+    try {
+      localStorage.setItem('cc_consolidado_v1', JSON.stringify(consolidado));
+    } catch(e) { /* almacenamiento no disponible */ }
   }
-  async function loadConsolidado(){
-    try{
-      if(window.storage){
-        const r = await window.storage.get('consolidado-etiquetas', false);
-        if(r && r.value){
-          consolidado = JSON.parse(r.value);
-          renderConsolidado();
-        }
+  function loadConsolidado(){
+    try {
+      const raw = localStorage.getItem('cc_consolidado_v1');
+      if(raw){
+        const parsed = JSON.parse(raw);
+        if(Array.isArray(parsed)) consolidado = parsed;
+        renderConsolidado();
       }
-    }catch(e){ /* no hay datos previos */ }
+    } catch(e) { /* no hay datos previos */ }
   }
   loadConsolidado();
 
